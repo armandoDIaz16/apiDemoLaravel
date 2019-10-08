@@ -59,3 +59,5 @@ Route::group(['prefix' => 'prueba'], function () {
 Route::group(['prefix' => 'formulario'], function () {
                            Route::resource('coches', 'formulario\cochesController');
                        });
+
+Route::resource('notes', 'NotesController');                       
