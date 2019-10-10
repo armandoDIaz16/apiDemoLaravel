@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;  
+use App\Nota;
 
 class NotesController extends Controller
 {
@@ -14,9 +15,10 @@ class NotesController extends Controller
      */
     public function index()
     {
-        $notas = DB::table('pruebasql')->get();
-        var_dump($notas);
-        return "hola noes";
+        // $notas = DB::table('pruebasql')->get();
+            $notas = Nota::all();
+        // var_dump($notas);        
+        return view('notes.indexNotes')->with('notas',$notas);
     }
 
     /**
@@ -26,7 +28,7 @@ class NotesController extends Controller
      */
     public function create()
     {
-        //
+        return view("notes.formNotes");
     }
 
     /**
@@ -37,7 +39,16 @@ class NotesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $note = DB::table('pruebasql')->insert(array(
+        'description' => $request->input('note_description'),
+        'created_at' => $request->input('note_fecha')
+        ));
+        if($note){
+        return redirect()->action('NotesController@index');    
+        }else{
+            return "no se pudo";
+        }
+        
     }
 
     /**
@@ -65,7 +76,7 @@ class NotesController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
