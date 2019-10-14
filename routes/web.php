@@ -56,8 +56,11 @@ Route::group(['prefix' => 'prueba'], function () {
                        'uses'       => 'restController@saludarAdmin',
                        'as' => 'alias']);*/
 
-Route::group(['prefix' => 'formulario'], function () {
-                           Route::resource('coches', 'formulario\cochesController');
-                       });
+// Route::group(['prefix' => 'formulario'], function () {
+//                            Route::resource('coches', 'formulario\cochesController');
+//                        });
 
-Route::resource('notes', 'NotesController');                       
+// Route::resource('notes', 'NotesController');                       
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
